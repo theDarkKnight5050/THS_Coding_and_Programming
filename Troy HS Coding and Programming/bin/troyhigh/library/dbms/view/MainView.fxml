@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="troyhigh.library.dbms.Main">
+   <bottom>
+      <AnchorPane prefHeight="110.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <left>
+      <AnchorPane prefHeight="179.0" prefWidth="110.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="179.0" prefWidth="110.0" BorderPane.alignment="CENTER" />
+   </right>
+   <top>
+      <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" text="Welcome to the THS Library DBMS" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+         	<Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openPersonDialogue" prefHeight="190.0" prefWidth="90.0" HBox.hgrow="ALWAYS">
+            	<graphic>
+                  <ImageView>
+                  	<image>
+                  		<Image url="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-128.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openBookDialogue" prefHeight="190.0" prefWidth="90.0" HBox.hgrow="ALWAYS">
+            	<graphic>
+                  <ImageView>
+                  	<image> 
+                  		<Image url="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-52-128.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openPrintDialogue" prefHeight="190.0" prefWidth="90.0" HBox.hgrow="ALWAYS">
+            	<graphic>
+                  <ImageView>
+                  	<image>
+                  		<Image url="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/print-128.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#openSettingsPage" prefHeight="190.0" prefWidth="90.0" HBox.hgrow="ALWAYS">
+            	<graphic>
+                  <ImageView>
+                  	<image>
+                  		<Image url="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-75-128.png" />
+                  	</image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
