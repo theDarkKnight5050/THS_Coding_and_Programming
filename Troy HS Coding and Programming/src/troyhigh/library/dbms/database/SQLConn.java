@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class SQLConn {
 	private static final String myUrl = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3222210";
 	protected static Connection conn;
@@ -12,11 +15,18 @@ public class SQLConn {
 	public static boolean establishConnection(){
 		try {
 			conn = DriverManager.getConnection(myUrl, username, password);
-			System.out.println("Successful Connection!");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Successful Login");
+			alert.setHeaderText("Access granted to user sql3222210");
+			alert.showAndWait();
 			return true;
 		} catch (SQLException e) {
-			System.err.println("Failed to connect to database. Check your username and password");
-			e.printStackTrace();
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("MySQL Error");
+			alert.setHeaderText("Failed to login to database. Try changing username and password.");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+			
 			return false;
 		}
 	}

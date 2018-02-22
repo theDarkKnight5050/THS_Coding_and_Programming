@@ -6,7 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import troyhigh.library.dbms.controller.BooksEditController;
+import troyhigh.library.dbms.controller.MyBooksEditController;
 import troyhigh.library.dbms.controller.PersonEditController;
+import troyhigh.library.dbms.controller.PrintController;
 import troyhigh.library.dbms.controller.SettingsController;
 import troyhigh.library.dbms.model.Member;
 import javafx.scene.Scene;
@@ -17,8 +19,6 @@ import javafx.scene.layout.BorderPane;
 public class Main extends Application {	
 	private BorderPane rootLayout;
 	private Stage primaryStage;
-	
-	private String username, password;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,7 +50,7 @@ public class Main extends Application {
             AnchorPane page = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("THS Library Books Database");
+            dialogStage.setTitle("Settings");
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
@@ -59,12 +59,6 @@ public class Main extends Application {
             controller.setDialogStage(dialogStage);
             
             dialogStage.showAndWait();
-            
-            username = controller.getUsername();
-            password = controller.getPassword();
-            
-            Member.setMaxStudentCheckout(controller.getMaxStudentCheckout());
-            Member.setMaxTeacherCheckout(controller.getMaxTeacherCheckout());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,9 +78,8 @@ public class Main extends Application {
             dialogStage.setScene(scene);
 
             PersonEditController controller = loader.getController();
-            controller.setUsername(username);
-            controller.setPassword(password);
             controller.setDialogStage(dialogStage);
+            controller.setMain(this);
             
             dialogStage.showAndWait();
         } catch (IOException e) {
@@ -118,6 +111,46 @@ public class Main extends Application {
 	
 	@FXML
 	private void openPrintDialogue(){
+		try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/PrintDialogue.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Print Dialogue");
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            PrintController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public void openEditMyBooks(Member member){
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("view/MyBooksEditDialogue.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit " + member.getLName() + "'s Books");
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            MyBooksEditController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setBooks(member.getMyBooks());
+            
+            dialogStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public static void main(String[] args) {

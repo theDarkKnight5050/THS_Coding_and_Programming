@@ -1,7 +1,9 @@
 package troyhigh.library.dbms.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import troyhigh.library.dbms.database.SQLConn;
 import troyhigh.library.dbms.model.Member;
@@ -44,10 +46,23 @@ public class SettingsController{
 	
 	@FXML
 	public void setMemberInfo(){
-		Member.setMaxTeacherCheckout(Integer.parseInt(newMaxTeacher.getText()));
-		Member.setMaxStudentCheckout(Integer.parseInt(newMaxStudent.getText()));
-		
-		newMaxTeacher.setText("");
-		newMaxStudent.setText("");
+		try{
+			Member.setMaxTeacherCheckout(Integer.parseInt(newMaxTeacher.getText()));
+			Member.setMaxStudentCheckout(Integer.parseInt(newMaxStudent.getText()));
+			
+			newMaxTeacher.setText("");
+			newMaxStudent.setText("");
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Succesful Update");
+			alert.setHeaderText("Succesfully updated values for max teacher and student checkout days");
+			alert.showAndWait();
+		} catch(Exception e){
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Input Error");
+			alert.setHeaderText("Failed to update member info. Try changing value to a number");
+			alert.setContentText(e.getMessage());
+			alert.showAndWait();
+		}
 	}
 }

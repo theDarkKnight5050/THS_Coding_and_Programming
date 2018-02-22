@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 
 public class Member {
 	private StringProperty fName;
@@ -21,12 +22,13 @@ public class Member {
 	private final IntegerProperty ID;
 	
 	public Member(){
-		fName = new SimpleStringProperty();
-		lName = new SimpleStringProperty();
+		fName = new SimpleStringProperty("");
+		lName = new SimpleStringProperty("");
 		maxStudentCheckout = new SimpleIntegerProperty();
 		maxTeacherCheckout = new SimpleIntegerProperty();
-		isTeacher = new SimpleBooleanProperty();
-		ID = new SimpleIntegerProperty(hashCode());
+		isTeacher = new SimpleBooleanProperty(false);
+		ID = new SimpleIntegerProperty(0);
+		myBooks = new SimpleObjectProperty<Set<Book>>(new HashSet<Book>());
 	}
 	
 	public Member(String f, String l, boolean teacher){
@@ -34,7 +36,6 @@ public class Member {
 		lName = new SimpleStringProperty(l);
 		isTeacher = new SimpleBooleanProperty(teacher);
 		ID = new SimpleIntegerProperty(hashCode());
-		
 		myBooks = new SimpleObjectProperty<Set<Book>>(new HashSet<Book>());
 	}
 	
@@ -51,6 +52,8 @@ public class Member {
 	
 	public String getFName() {return fName.getValue();}
 	public String getLName() {return lName.getValue();}
+	public ObservableValue<String> getObservableF() { return fName; }
+	public ObservableValue<String> getObservableL() { return lName; }
 	public boolean getIsTeacher() {return isTeacher.getValue();}
 	public int getMaxStudentCheckout() {return maxStudentCheckout.getValue();}
 	public int getMaxTeacherCheckout() {return maxTeacherCheckout.getValue();}
@@ -66,6 +69,7 @@ public class Member {
 	public static void setMaxTeacherCheckout(int max) {
 		maxTeacherCheckout = new SimpleIntegerProperty(max);
 	}
+	public void setID(int id){ this.ID.setValue(id); }
 	
 	public int hashCode(){
 		return fName.hashCode();
