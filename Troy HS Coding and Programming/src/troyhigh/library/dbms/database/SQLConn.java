@@ -8,7 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class SQLConn {
-	private static final String myUrl = "jdbc:mysql://sql3.freemysqlhosting.net:3306/sql3222210";
+	private static final String myUrl = "jdbc:mysql://localhost:3306/THS_Library_DBMS";
 	protected static Connection conn;
 	private static String username = "", password = "";
 	
@@ -17,7 +17,7 @@ public class SQLConn {
 			conn = DriverManager.getConnection(myUrl, username, password);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Successful Login");
-			alert.setHeaderText("Access granted to user sql3222210");
+			alert.setHeaderText("Access granted to user " + username);
 			alert.showAndWait();
 			return true;
 		} catch (SQLException e) {

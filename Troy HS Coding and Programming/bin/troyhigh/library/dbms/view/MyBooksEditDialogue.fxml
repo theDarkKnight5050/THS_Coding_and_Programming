@@ -32,8 +32,8 @@
                <children>
                   <ButtonBar prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <buttons>
-                      <Button mnemonicParsing="false" onAction="#checkIn" text="Checkin" />
-                        <Button mnemonicParsing="false" onAction="#checkOut" text="Checkout" />
+                      <Button fx:id="inButton" mnemonicParsing="false" onAction="#checkIn" text="Checkin" />
+                        <Button fx:id="outButton" mnemonicParsing="false" onAction="#checkOut" text="Checkout" />
                     </buttons>
                   </ButtonBar>
                   <GridPane layoutX="14.0" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -46,6 +46,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Label text="Title" />
@@ -56,6 +57,8 @@
                         <Label fx:id="name" text="Label" GridPane.columnIndex="1" />
                         <Label fx:id="author" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label fx:id="id" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Owner" GridPane.rowIndex="4" />
+                        <Label fx:id="ownerL" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                </children>

@@ -18,7 +18,6 @@ public class Member {
 	private static IntegerProperty maxTeacherCheckout;
 	private static IntegerProperty maxStudentCheckout;
 	private BooleanProperty isTeacher;
-	private ObjectProperty<Set<Book>> myBooks;
 	private final IntegerProperty ID;
 	
 	public Member(){
@@ -28,7 +27,6 @@ public class Member {
 		maxTeacherCheckout = new SimpleIntegerProperty();
 		isTeacher = new SimpleBooleanProperty(false);
 		ID = new SimpleIntegerProperty(0);
-		myBooks = new SimpleObjectProperty<Set<Book>>(new HashSet<Book>());
 	}
 	
 	public Member(String f, String l, boolean teacher){
@@ -36,20 +34,9 @@ public class Member {
 		lName = new SimpleStringProperty(l);
 		isTeacher = new SimpleBooleanProperty(teacher);
 		ID = new SimpleIntegerProperty(hashCode());
-		myBooks = new SimpleObjectProperty<Set<Book>>(new HashSet<Book>());
 	}
 	
-	public void addBook(Book b){
-		Set<Book> temp = myBooks.getValue();
-		temp.add(b);
-		myBooks.setValue(temp);
-	}
-	public void removeBook(Book b){
-		Set<Book> temp = myBooks.getValue();
-		temp.remove(b);
-		myBooks.setValue(temp);
-	}
-	
+
 	public String getFName() {return fName.getValue();}
 	public String getLName() {return lName.getValue();}
 	public ObservableValue<String> getObservableF() { return fName; }
@@ -58,7 +45,6 @@ public class Member {
 	public int getMaxStudentCheckout() {return maxStudentCheckout.getValue();}
 	public int getMaxTeacherCheckout() {return maxTeacherCheckout.getValue();}
 	public int getID() {return ID.getValue();}
-	public Set<Book> getMyBooks() {return myBooks.getValue();}
 	
 	public void setFName(String f) {fName.setValue(f);;}
 	public void setLName(String l) {lName.setValue(l);}

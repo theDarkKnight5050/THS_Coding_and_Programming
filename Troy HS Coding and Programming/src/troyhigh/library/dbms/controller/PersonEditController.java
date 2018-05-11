@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import troyhigh.library.dbms.Main;
+import troyhigh.library.dbms.database.BookSQLConn;
 import troyhigh.library.dbms.database.MemberSQLConn;
 import troyhigh.library.dbms.model.Book;
 import troyhigh.library.dbms.model.Member;
@@ -53,18 +54,19 @@ public class PersonEditController {
     
     public void setPerson(Member person) {
     	if(person == null)
-    		this.member = new Member();
-    	else 
-	        this.member = person;
+    		person = new Member();
+	    
+    	this.member = person;
 	    firstNameField.setText(member.getFName());
 	    lastNameField.setText(member.getLName());
         if(member.getIsTeacher()) teacherField.setSelected(true);        
 	       
-	    String myBooks = "";
-        for(Book book : member.getMyBooks()){
+	    Set<Book> memberBooks = BookSQLConn.getAllBooks("select * from Books where Owner = " + person.getID());
+        String myBooks = "";
+	    for(Book book : memberBooks){
 	       	myBooks += ", " + book.getName();
 	    }
-	    if(myBooks.equals("")) myBooksField.setText("");
+	    if(myBooks.equals("")) myBooksField.setText(myBooks);
 	    else myBooksField.setText(myBooks.substring(1));
 	        
 	    idField.setText(member.getID() + "");
@@ -89,7 +91,7 @@ public class PersonEditController {
     private void delete() {
         MemberSQLConn.removeMember(Integer.parseInt(idField.getText()));
         
-        updateTable();
+        setPerson(new Member());
     }
     
     @FXML
@@ -109,6 +111,8 @@ public class PersonEditController {
 
     public void handleEditMyBooks(){
     	main.openEditMyBooks(member);
+    	
+    	updateTable();
     }
 
     public void updateTable(){ 
@@ -121,8 +125,7 @@ public class PersonEditController {
     	
     	fNameCol.setCellValueFactory(cellData -> cellData.getValue().getObservableF());
         lNameCol.setCellValueFactory(cellData -> cellData.getValue().getObservableL()); 
-    
-        setPerson(new Member());        
+           
         memberTable.setItems(members);
     }
     

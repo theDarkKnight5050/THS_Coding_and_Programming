@@ -144,8 +144,8 @@ public class Main extends Application {
             dialogStage.setScene(scene);
 
             MyBooksEditController controller = loader.getController();
+            controller.setOwner(member);
             controller.setDialogStage(dialogStage);
-            controller.setBooks(member.getMyBooks());
             
             dialogStage.showAndWait();
         } catch (IOException e) {

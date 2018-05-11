@@ -28,7 +28,7 @@
             	<graphic>
                   <ImageView>
                   	<image>
-                  		<Image url="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-128.png" />
+                  		<Image url="@../images/personButton.png"/>
                   	</image>
                   </ImageView>
                </graphic>
@@ -37,7 +37,7 @@
             	<graphic>
                   <ImageView>
                   	<image> 
-                  		<Image url="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-52-128.png" />
+                  		<Image url="@../images/bookButton.png" />
                   	</image>
                   </ImageView>
                </graphic>
@@ -46,7 +46,7 @@
             	<graphic>
                   <ImageView>
                   	<image>
-                  		<Image url="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/print-128.png" />
+                  		<Image url="@../images/printButton.png" />
                   	</image>
                   </ImageView>
                </graphic>
@@ -55,7 +55,7 @@
             	<graphic>
                   <ImageView>
                   	<image>
-                  		<Image url="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-75-128.png" />
+                  		<Image url="@../images/settingsButton.png" />
                   	</image>
                   </ImageView>
                </graphic>

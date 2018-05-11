@@ -29,7 +29,7 @@ public class Book {
 		AUTHOR = new SimpleStringProperty(author);
 		ID = new SimpleIntegerProperty(hashCode());
 		this.owner = new SimpleIntegerProperty(0);
-		checkOut = new SimpleObjectProperty<>(new Date((new java.util.Date()).getTime()));
+		checkOut = new SimpleObjectProperty<>(null);
 	}
 	
 	public Book(String name, String author, int id, int owner){
@@ -37,7 +37,7 @@ public class Book {
 		AUTHOR = new SimpleStringProperty(author);
 		ID = new SimpleIntegerProperty(id);
 		this.owner = new SimpleIntegerProperty(owner);
-		checkOut = new SimpleObjectProperty<>(new Date((new java.util.Date()).getTime()));
+		checkOut = new SimpleObjectProperty<>(null);
 	}
 	
 	public void setCheckout(Date d) {checkOut.setValue(d);}
@@ -47,7 +47,11 @@ public class Book {
 	public String getAuthor() {return AUTHOR.getValue();}
 	public ObservableValue<String> getObservableN() {return NAME;}
 	public ObservableValue<String> getObservableA() {return AUTHOR;}
-	public Date getDate() {return checkOut.getValue();}
+	public Date getDate() {
+		if(checkOut.getValue() == null)
+			return new Date(0);
+		return checkOut.getValue();
+	}
 	public int getOwner() {return owner.getValue();}
 	public int getID(){return ID.getValue();}
 	
@@ -62,6 +66,6 @@ public class Book {
 	}
 	
 	public int hashCode(){
-		return (int)((NAME.hashCode() + AUTHOR.hashCode()) * Math.random());
+		return Math.abs((int)((NAME.hashCode() + AUTHOR.hashCode()) * Math.random()));
 	}
 }
